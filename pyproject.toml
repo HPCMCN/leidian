@@ -41,7 +41,6 @@ dependencies = [
     #  "django>2.0; os_name == 'nt'",
 ]
 
-dynamic = ["version", "description"]
 [project.urls]
 homepage = "https://github.com/HPCMCN/leidian"
 documentation = "https://github.com/HPCMCN/leidian"
@@ -49,12 +48,12 @@ repository = "https://github.com/HPCMCN/leidian"
 changelog = "https://github.com/HPCMCN/leidian"
 
 
-[project.optional-dependencies]
-gui = ["PyQt5"]
-cli = [
-    "rich",
-    "click",
-]
+#[project.optional-dependencies]
+#gui = ["PyQt5"]
+#cli = [
+#    "rich",
+#    "click",
+#]
 
 [project.scripts]
 spam-cli = "spam:main_cli"
