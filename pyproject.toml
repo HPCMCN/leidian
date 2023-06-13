@@ -1,0 +1,66 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "leidian"
+version = "1.0.1"
+keywords = ["雷电", "Virtual", "模拟器"]
+authors = [
+    { name = "hpcm", email = "hpcm@foxmail.com" }
+]
+maintainers = [
+    { name = "hpcm", email = "hpcm@foxmail.com" }
+]
+description = "雷电模拟器操作"
+
+readme = { file = "README.md", content-type = "text/markdown" }
+license = { text = "MIT License" }
+requires-python = ">= 3.4"
+classifiers = [
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: Unix",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = [
+    #  "httpx",
+    #  "gidgethub[httpx]>4.0.0",
+    #  "django>2.1; os_name != 'nt'",
+    #  "django>2.0; os_name == 'nt'",
+]
+
+dynamic = ["version", "description"]
+[project.urls]
+homepage = "https://github.com/HPCMCN/leidian"
+documentation = "https://github.com/HPCMCN/leidian"
+repository = "https://github.com/HPCMCN/leidian"
+changelog = "https://github.com/HPCMCN/leidian"
+
+
+[project.optional-dependencies]
+gui = ["PyQt5"]
+cli = [
+    "rich",
+    "click",
+]
+
+[project.scripts]
+spam-cli = "spam:main_cli"
+
+[project.gui-scripts]
+spam-gui = "spam:main_gui"
+
+[project.entry-points."spam.magical"]
+tomatoes = "spam:main_tomatoes"
