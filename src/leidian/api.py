@@ -3,6 +3,7 @@
 # time: 2023/5/29 11:41
 # file: api.py
 import os
+import time
 
 from django.conf import settings
 
@@ -32,7 +33,13 @@ class LDApi(object):
         :param name: str, 模拟器名称
         :return: bool
         """
-        self.player.register(self.console.launch(name))
+        while True:
+            try:
+                self.player.register(self.console.launch(name))
+                break
+            except IndexError:
+                pass
+            time.sleep(1)
         return self.player
 
     def reboot(self, name):
