@@ -45,7 +45,7 @@ class LDPlayer(object):
         查看 APP 列表
         :return:
         """
-        return self.adb.list(self.device)
+        return self.adb.app_list(self.device)
 
     def app_detail(self, app):
         """

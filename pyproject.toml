@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "leidian"
-version = "1.0.1"
+version = "1.0.2"
 keywords = ["雷电", "Virtual", "模拟器"]
 authors = [
     { name = "hpcm", email = "hpcm@foxmail.com" }

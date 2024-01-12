@@ -5,8 +5,7 @@
 import os
 import time
 
-from django.conf import settings
-
+from . import logger
 from .player import LDPlayer
 from .executors import ADBExecutor, ConsoleExecutor
 
@@ -15,10 +14,8 @@ class LDApi(object):
 
     def __init__(self, path):
         self.console = ConsoleExecutor(os.path.join(path, "ldconsole.exe"))
-        self.player = LDPlayer(ADBExecutor(os.path.join(path, "adb.exe")), self)
-        self.tmp_dir = os.path.join(os.path.abspath(settings.VOLUME_ROOT), "tmp")
-        if not os.path.exists(self.tmp_dir):
-            os.makedirs(self.tmp_dir)
+        self.adb = ADBExecutor(os.path.join(path, "adb.exe"))
+        self.adb.get_devices()
 
     def get_vms(self):
         """
@@ -35,12 +32,13 @@ class LDApi(object):
         """
         while True:
             try:
-                self.player.register(self.console.launch(name))
+                player = LDPlayer(self.adb, self)
+                player.register(self.console.launch(name))
                 break
             except IndexError:
                 pass
-            time.sleep(1)
-        return self.player
+            time.sleep(0.5)
+        return player
 
     def reboot(self, name):
         """
@@ -159,4 +157,4 @@ class LDApi(object):
         return self.console.set_factory(name, manufacturer, model, pnumber, imei, imsi, simserial, androidid)
 
     def get_player(self, name):
-        return self.player.register(name)
+        return LDPlayer(self.adb, self).register(name)

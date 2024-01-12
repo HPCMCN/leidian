@@ -5,6 +5,8 @@
 import os
 import subprocess
 
+from . import logger
+
 
 class BaseExecutor(object):
 
@@ -26,7 +28,7 @@ class ADBExecutor(BaseExecutor):
 
     def execute(self, cmd, envs=None, stream=False):
         cmd = self.executor_path + " " + cmd
-        print(f"adb: {cmd}")
+        logger.debug(f"adb: {cmd}")
         if envs:
             os.environ.update(envs)
         result = self._shell_execute(cmd)
@@ -98,7 +100,7 @@ class ConsoleExecutor(BaseExecutor):
 
     def execute(self, cmd, envs=None):
         cmd = self.executor_path + " " + cmd
-        print(f"console: {cmd}")
+        logger.debug(f"console: {cmd}")
         if envs:
             os.environ.update(envs)
         result = self._shell_execute(cmd)
